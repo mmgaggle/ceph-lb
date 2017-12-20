@@ -1,0 +1,15 @@
+---
+# This playbook installs and configures HAProxy for ceph-radosgw
+
+- name: Install HAProxy package
+  package:
+    name: haproxy
+    state: present
+
+- name: Configure HAProxy
+  template: src=haproxy.j2 dest=/etc/haproxy/haproxy.cfg
+
+- name: Start HAProxy service
+  service: name=haproxy state=started enabled=yes
+
+
