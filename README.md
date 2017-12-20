@@ -8,6 +8,8 @@ in this capacity. Instead HAProxy is being used because it offers a rich set
 of HTTP proxy features that can improve the robustness of Ceph object storage
 services.
 
+![diagram](https://raw.githubusercontent.com/mmgaggle/ceph-haproxy/master/diagram.png)
+
 # Background
 
 Starting with the firefly (v0.80) release of Ceph, the Ceph Object Gateway has
