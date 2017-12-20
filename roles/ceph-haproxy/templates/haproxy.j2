@@ -1,0 +1,49 @@
+global
+    #log /dev/log local0
+    #log /dev/log local1 notice
+    log         127.0.0.15 local2
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     8080
+    user        haproxy
+    group       haproxy
+    daemon
+    stats socket /var/lib/haproxy/stats
+
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    maxconn                 8192
+    timeout http-request    0
+    timeout connect         10000
+    timeout client          100000
+    timeout http-keep-alive 100000
+    timeout server          100000
+    option accept-invalid-http-request
+
+    listen stats :9000
+    mode http
+    stats enable
+    stats hide-version
+    stats realm Haproxy\ Statistics
+    stats uri /haproxy_stats
+    stats auth Username:Password
+
+frontend  rgwhttp
+    default_backend             rgw
+{% set haproxy_interface='ansible_' + (hostvars[host]['haproxy_interface'] | replace('-', '_')) %}
+    bind			{{ hostvars[host][haproxy_interface][ip_version]['address'] }}:80
+    option 			forwardfor
+    reqidel 			^X-Forwarded-For:.*
+    reqadd                      X-Forwarded-Proto:\ http
+
+backend rgw
+  balance leastconn
+  option http-server-close
+{% set radosgw_interface='ansible_' + (hostvars[host]['radosgw_interface'] | replace('-', '_')) %}
+  server {{ansible_hostname}} {{ hostvars[host][radosgw_interface][ip_version]['address'] }}:{{ radosgw_civetweb_port }}
