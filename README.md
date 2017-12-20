@@ -8,6 +8,9 @@ in this capacity. Instead HAProxy is being used because it offers a rich set
 of HTTP proxy features that can improve the robustness of Ceph object storage
 services.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mmgaggle/ceph-haproxy/master/diagram.png" />
+</p>
 
 # Background
 
@@ -21,6 +24,3 @@ keep connections between clients and HAProxy open, and close connections between
 HAproxy and ceph-radosgw after each HTTP request. This is accomplished with the
 [http-server-close](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20http-server-close) HAProxy configuration option.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mmgaggle/ceph-haproxy/master/diagram.png" />
-</p>
