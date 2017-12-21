@@ -83,7 +83,7 @@ Ceph Object Storage services. This is the only option we provide for the proxy
 stage.
 
 <p align="center">
-  <img src="" />
+  <img src="https://raw.githubusercontent.com/mmgaggle/ceph-lb/master/images/haproxy.png" />
 </p>
 
 ## Connection Management
