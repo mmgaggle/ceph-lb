@@ -10,7 +10,7 @@ Object Storage supports two interfaces:
 The objective of this ansible playbook is to present and help operators
 implement a few different traffic management strategies for collections of Ceph
 Object Gateways. Each traffic management strategy is composed of two stages,
-a load balancing stage, and proxy stage.
+a load balancing stage, and a proxy stage.
 
 # Load Balancing Stage
 
