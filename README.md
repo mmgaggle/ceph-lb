@@ -52,7 +52,7 @@ Smart-Hash technology can further increase the robustness of this approach.
 
 HAProxy is often used for balancing load across multiple backend servers. The
 role provided by this playbook does not use HAProxy for load balancing, but it
-does a number of it's other features because they improve the robustness of
+does use a number of it's other features because they improve the robustness of
 Ceph Object Storage services. This is the only option we provide for the proxy
 stage.
 
