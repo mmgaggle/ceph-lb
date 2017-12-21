@@ -34,14 +34,14 @@ defaults
 
 frontend  rgwhttp
     default_backend             rgw
-{% set haproxy_interface='ansible_' + (hostvars[host]['haproxy_interface'] | replace('-', '_')) %}
-    bind			{{ hostvars[host][haproxy_interface][ip_version]['address'] }}:80
-    option 			forwardfor
-    reqidel 			^X-Forwarded-For:.*
+{% set interface='ansible_' + (haproxy_interface | replace('-', '_')) %}
+    bind                        {{ hostvars[ansible_hostname][interface][ip_version]['address'] }}:80
+    option                      forwardfor
+    reqidel                     ^X-Forwarded-For:.*
     reqadd                      X-Forwarded-Proto:\ http
 
 backend rgw
   balance leastconn
   option http-server-close
-{% set radosgw_interface='ansible_' + (hostvars[host]['radosgw_interface'] | replace('-', '_')) %}
-  server {{ansible_hostname}} {{ hostvars[host][radosgw_interface][ip_version]['address'] }}:{{ radosgw_civetweb_port }}
+{% set interface='ansible_' + (radosgw_interface | replace('-', '_')) %}
+  server {{ansible_hostname}} {{ hostvars[ansible_hostname][interface][ip_version]['address'] }}:{{ radosgw_civetweb_port }}
