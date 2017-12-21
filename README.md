@@ -25,8 +25,12 @@ that resolves the domain name for the object storage API endpoint to one of the
 storage hosts. To balance the load across storage hosts, each storage host
 should have the same number of clients. The mapping of storage hosts to clients
 is configured with the ```vars/dnsmaq.yml``` variables file. The resulting
-configuration is by no means fault tolerent and is only appropriate for lab
+configuration is by no means fault tolerant and is only appropriate for lab
 environments.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mmgaggle/ceph-lb/master/images/client_dns.png" />
+</p>
 
 ## VRRP with Direct Routing
 
@@ -42,9 +46,13 @@ the requesting client rather than passing all outgoing packets through the
 active storage host. ARP requests for the virtual ip address are filtered by
 configuring arptables.
 
-This solution is fault tolerent, but active/passive. It has the ability to scale
+This solution is fault tolerant, but active/passive. It has the ability to scale
 egress beyond the throughput of a single host, but not ingress. This may make it
 unsuitable for environments that expect a large volume of object writes.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mmgaggle/ceph-lb/master/images/vrrp_direct.png" />
+</p>
 
 ## Route Health Injection
 
@@ -58,7 +66,13 @@ radosgw service crashes or stops.
 
 This scenario requires upstream devices to be configured, and the required
 commands to configure will vary depending on the devices' network operating
-system.
+system. This makes this scenario more challenging to implement. On the other
+hand  the resulting storage service is fault tolerant and active/active up to
+the ECMP width supported by upstream devices.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mmgaggle/ceph-lb/master/images/health_routing.png" />
+</p>
 
 # Stage 2: Proxy
 
@@ -67,6 +81,10 @@ role provided by this playbook does not use HAProxy for load balancing, but it
 does use a number of it's other features because they improve the robustness of
 Ceph Object Storage services. This is the only option we provide for the proxy
 stage.
+
+<p align="center">
+  <img src="" />
+</p>
 
 ## Connection Management
 
