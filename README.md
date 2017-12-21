@@ -18,7 +18,7 @@ There are several options for balancing load across storage hosts. Operators
 should consider the traffic volume and fault tolerence required for their
 environment, while keeping in mind the complexity of their selected strategy.
 
-## Dnsmasq
+## Client Side Dnsmasq
 
 The dnsmasq role configures a dnsmasq service on each client that resolves the
 domain name for the object storage API endpoint to one of the storage hosts. To
