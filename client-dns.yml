@@ -1,0 +1,18 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+- hosts:
+  - clients
+  remote_user: 'admin'
+  become: yes
+  become_method: sudo
+  roles:
+    - dnsmasq
+
+- hosts:
+  - rgws
+  remote_user: 'admin'
+  become: yes
+  become_method: sudo
+  roles:
+    - haproxy

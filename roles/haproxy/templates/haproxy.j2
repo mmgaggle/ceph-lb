@@ -1,6 +1,4 @@
 global
-    #log /dev/log local0
-    #log /dev/log local1 notice
     log         127.0.0.15 local2
     chroot      /var/lib/haproxy
     pidfile     /var/run/haproxy.pid
@@ -21,9 +19,9 @@ defaults
     maxconn                 8192
     timeout http-request    0
     timeout connect         10000
-    timeout client          100000
-    timeout http-keep-alive 100000
-    timeout server          100000
+    timeout client          50000
+    timeout http-keep-alive 500000
+    timeout server          500000
     option accept-invalid-http-request
 
     listen stats :9000

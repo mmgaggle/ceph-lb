@@ -1,5 +1,8 @@
 ---
-remove_user: 'admin'
+# Valid scenarios are 'dnsmasq', 'keepalived', 'quagga'
+load_balancing_scenario: 'dnsmasq'
+
+
 haproxy_interface: 'eth0'
 radosgw_interface: 'lo'
 # If haproxy_interface and radosgw_interface are the same then
