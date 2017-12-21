@@ -12,7 +12,7 @@ implement a few different traffic management strategies for collections of Ceph
 Object Gateways. Each traffic management strategy is composed of two stages,
 a load balancing stage, and a proxy stage.
 
-# Load Balancing Stage
+# Stage 1: Load Balancing
 
 There are several options for balancing load across storage hosts. Operators
 should consider the traffic volume and fault tolerence required for their
@@ -48,7 +48,7 @@ can be employed to stop the quagga service if either the haproxy or radosgw
 service crashes or stops. Using upstream switching equipment with Broadcom
 Smart-Hash technology can further increase the robustness of this approach.
 
-# Proxy Stage
+# Stage 2: Proxy
 
 HAProxy is often used for balancing load across multiple backend servers. The
 role provided by this playbook does not use HAProxy for load balancing, but it
