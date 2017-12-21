@@ -2,9 +2,7 @@
 # Valid scenarios are 'dnsmasq', 'keepalived', 'quagga'
 load_balancing_scenario: 'dnsmasq'
 
-
+ip_version: 'ipv4'
 haproxy_interface: 'eth0'
 radosgw_interface: 'lo'
-# If haproxy_interface and radosgw_interface are the same then
-# radosgw_interface should be a port other than '80'.
 radosgw_civetweb_port: '8080'
