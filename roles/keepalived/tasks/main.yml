@@ -1,0 +1,13 @@
+---
+# This playbook installs and configures keepalived
+
+- name: Install keepalived package
+  package:
+    name: keepalived
+    state: present
+
+- name: Configure keepalived
+  template: src=keepalived.j2 dest=/etc/keepalived/keepalived.conf
+
+- name: Start keepalived
+  service: name=keepalived state=started enabled=yes

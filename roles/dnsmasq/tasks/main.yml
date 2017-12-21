@@ -1,0 +1,13 @@
+---
+# This playbook installs and configures dnsmasq
+
+- name: Install dnsmasq package
+  package:
+    name: dnsmasq
+    state: present
+
+- name: Configure dnsmasq
+  template: src=ceph.j2 dest=/etc/dnsmasq.d/ceph
+
+- name: Start dnsmasq
+  service: name=dnsmasq state=started enabled=yes
