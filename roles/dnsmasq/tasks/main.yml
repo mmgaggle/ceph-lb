@@ -11,3 +11,9 @@
 
 - name: Start dnsmasq
   service: name=dnsmasq state=started enabled=yes
+
+- name: Add local resolver
+  lineinfile:
+    path: /etc/resolv.conf
+    line: "nameserver 127.0.0.1"
+    insertbefore: BOF
