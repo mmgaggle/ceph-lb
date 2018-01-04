@@ -1,1 +1,2 @@
-address=/{{rgw_dns_name}}/{{ip}}
+{% set host=(ansible_hostname) %}
+address=/{{rgw_dns_name}}/{{ dnsmap[host] }}

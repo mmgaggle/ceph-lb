@@ -6,6 +6,8 @@
   remote_user: 'admin'
   become: yes
   become_method: sudo
+  vars_files:
+    - "vars/dnsmap.yml"
   roles:
     - dnsmasq
 
