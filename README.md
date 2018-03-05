@@ -68,7 +68,7 @@ This scenario requires upstream devices to be configured, and the required
 commands to configure will vary depending on the devices' network operating
 system. This makes this scenario more challenging to implement. On the other
 hand  the resulting storage service is fault tolerant and active/active up to
-the ECMP width supported by upstream devices.
+the ECMP width supported by upstream devices (commonly 32 or 64).
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/mmgaggle/ceph-lb/master/images/health_routing.png" />
